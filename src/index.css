@@ -1,0 +1,250 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "./styles/animations.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ── Brand colour roles (§3). Components only ever reference roles. ── */
+:root,
+[data-scheme="lagoon"] {
+  --brand-primary: #3d5afe;
+  --brand-sun: #2ef2d0;
+  --brand-pop: #ff6f5e;
+  --brand-ink: #0d1333;
+  --brand-paper: #f5f7ff;
+  --brand-surface: #ffffff;
+}
+[data-scheme="bubblegum"] {
+  --brand-primary: #ff3d8b;
+  --brand-sun: #ffd23f;
+  --brand-pop: #00c2a8;
+  --brand-ink: #1b1035;
+  --brand-paper: #fff7fb;
+  --brand-surface: #ffffff;
+}
+[data-scheme="citrus"] {
+  --brand-primary: #ff6b1a;
+  --brand-sun: #c6f432;
+  --brand-pop: #2eb8ff;
+  --brand-ink: #14213d;
+  --brand-paper: #fffbf3;
+  --brand-surface: #ffffff;
+}
+[data-scheme="berry"] {
+  --brand-primary: #8b3dff;
+  --brand-sun: #ffb627;
+  --brand-pop: #3ee8a6;
+  --brand-ink: #1e0b3a;
+  --brand-paper: #fbf7ff;
+  --brand-surface: #ffffff;
+}
+
+/* Shared derived roles (light) */
+:root {
+  --brand-fg: var(--brand-ink);
+  --brand-contrast: var(--brand-ink);
+  --brand-on-contrast: #ffffff;
+  --brand-on-primary: #ffffff;
+  --brand-on-sun: var(--brand-ink);
+  --brand-on-pop: var(--brand-ink);
+  --brand-shadow: rgb(0 0 0 / 0.15);
+  --brand-hero-ring: transparent;
+}
+
+/* DARK, per scheme. --brand-ink stays the light-mode ink so on-sun / on-pop keep working. */
+.dark,
+.dark[data-scheme="lagoon"] {
+  --brand-primary: #5c76ff;
+  --brand-sun: #2ef2d0;
+  --brand-pop: #ff7a6b;
+  --brand-paper: #080c24;
+  --brand-surface: #121a3f;
+  --brand-fg: #eef1ff;
+  --brand-ink: #0d1333;
+}
+.dark[data-scheme="bubblegum"] {
+  --brand-primary: #ff5a9e;
+  --brand-sun: #ffd84f;
+  --brand-pop: #14d4b9;
+  --brand-paper: #120a26;
+  --brand-surface: #1f1440;
+  --brand-fg: #fff0f6;
+  --brand-ink: #1b1035;
+}
+.dark[data-scheme="citrus"] {
+  --brand-primary: #ff7f38;
+  --brand-sun: #ccf54a;
+  --brand-pop: #4cc3ff;
+  --brand-paper: #0b1326;
+  --brand-surface: #16213d;
+  --brand-fg: #f3f6ff;
+  --brand-ink: #14213d;
+}
+.dark[data-scheme="berry"] {
+  --brand-primary: #9d5cff;
+  --brand-sun: #ffbe3d;
+  --brand-pop: #4ff0b2;
+  --brand-paper: #120723;
+  --brand-surface: #22113f;
+  --brand-fg: #f6f0ff;
+  --brand-ink: #1e0b3a;
+}
+.dark {
+  --brand-contrast: var(--brand-sun);
+  --brand-on-contrast: var(--brand-paper);
+  --brand-shadow: rgb(0 0 0 / 0.4);
+  --brand-hero-ring: rgb(255 255 255 / 0.06);
+}
+
+/* ── Lettering presets (settings menu). Default: Bricolage Grotesque + Figtree. ── */
+:root,
+[data-font="bricolage"] {
+  --font-display: "Bricolage Grotesque", system-ui, sans-serif;
+  --font-sans: "Figtree", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+[data-font="fredoka"] {
+  --font-display: "Fredoka", system-ui, sans-serif;
+  --font-sans: "Nunito", system-ui, sans-serif;
+}
+[data-font="unbounded"] {
+  --font-display: "Unbounded", system-ui, sans-serif;
+  --font-sans: "DM Sans", system-ui, sans-serif;
+}
+[data-font="syne"] {
+  --font-display: "Syne", system-ui, sans-serif;
+  --font-sans: "Outfit", system-ui, sans-serif;
+}
+
+/* ── shadcn mapping, so every shadcn component inherits the theme ── */
+:root,
+.dark {
+  --background: var(--brand-paper);
+  --foreground: var(--brand-fg);
+  --card: var(--brand-surface);
+  --card-foreground: var(--brand-fg);
+  --popover: var(--brand-surface);
+  --popover-foreground: var(--brand-fg);
+  --primary: var(--brand-primary);
+  --primary-foreground: var(--brand-on-primary);
+  --secondary: var(--brand-sun);
+  --secondary-foreground: var(--brand-on-sun);
+  --accent: var(--brand-pop);
+  --accent-foreground: var(--brand-on-pop);
+  --muted: color-mix(in oklab, var(--brand-fg) 6%, transparent);
+  --muted-foreground: color-mix(in oklab, var(--brand-fg) 70%, transparent);
+  --border: color-mix(in oklab, var(--brand-fg) 12%, transparent);
+  --input: var(--border);
+  --ring: var(--brand-primary);
+  --destructive: #e5484d;
+  --radius: 1rem;
+  --radius-pill: 999px;
+  --ease-spring: cubic-bezier(0.3, 1.6, 0.5, 1);
+  --ease-pop: cubic-bezier(0.3, 1.4, 0.5, 1);
+  --gutter: 48px;
+}
+@media (max-width: 1279px) {
+  :root {
+    --gutter: 40px;
+  }
+}
+@media (max-width: 767px) {
+  :root {
+    --gutter: 20px;
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-destructive: var(--destructive);
+  --color-brand-primary: var(--brand-primary);
+  --color-brand-sun: var(--brand-sun);
+  --color-brand-pop: var(--brand-pop);
+  --color-brand-ink: var(--brand-ink);
+  --color-brand-fg: var(--brand-fg);
+  --color-brand-paper: var(--brand-paper);
+  --color-brand-surface: var(--brand-surface);
+  --color-brand-contrast: var(--brand-contrast);
+  --color-brand-on-contrast: var(--brand-on-contrast);
+  --color-brand-on-primary: var(--brand-on-primary);
+  --color-brand-on-sun: var(--brand-on-sun);
+  --color-brand-on-pop: var(--brand-on-pop);
+  --font-display: var(--font-display);
+  --font-sans: var(--font-sans);
+  --font-heading: var(--font-display);
+  --font-mono: var(--font-mono);
+  --radius-sm: 14px;
+  --radius-md: 24px;
+  --radius-lg: 26px;
+  --radius-xl: 32px;
+  --radius-2xl: 32px;
+  --radius-3xl: 24px;
+  --radius-4xl: 999px;
+  --ease-spring: var(--ease-spring);
+  --ease-pop: var(--ease-pop);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    transition:
+      background-color 0.3s,
+      color 0.3s;
+    overflow-x: hidden;
+  }
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+  /* theme changes cross-fade on every coloured surface */
+  .theme-fade {
+    transition:
+      background-color 0.3s,
+      color 0.3s,
+      border-color 0.3s;
+  }
+}
+
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+@utility display {
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 1;
+}
+@utility page-x {
+  padding-inline: var(--gutter);
+}

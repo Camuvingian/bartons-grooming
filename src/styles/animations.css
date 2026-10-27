@@ -1,0 +1,188 @@
+/* Every keyframe used by the site (§6). Reduced motion turns them all off at the bottom. */
+@keyframes rise {
+  0% {
+    transform: translateY(0) scale(0.6);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(-640px) scale(1.15);
+    opacity: 0;
+  }
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes popIn {
+  0% {
+    transform: translateY(60%) rotate(-6deg);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(-8%) rotate(2deg);
+    opacity: 1;
+  }
+  100% {
+    transform: none;
+  }
+}
+@keyframes wiggle {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  25% {
+    transform: rotate(-4deg);
+  }
+  75% {
+    transform: rotate(4deg);
+  }
+}
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-3deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(3deg);
+  }
+}
+@keyframes blob {
+  0%,
+  100% {
+    border-radius: 58% 42% 55% 45% / 50% 58% 42% 50%;
+  }
+  50% {
+    border-radius: 42% 58% 45% 55% / 58% 44% 56% 42%;
+  }
+}
+@keyframes slideInRight {
+  from {
+    transform: translateX(24px);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-24px);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+@keyframes fadeUp {
+  from {
+    transform: translateY(24px);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+@keyframes burst {
+  0% {
+    transform: translate(0, 0) scale(0.4);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--dx), var(--dy)) scale(1.1);
+    opacity: 0;
+  }
+}
+
+.animate-rise {
+  animation: rise var(--dur, 10s) linear var(--delay, 0s) infinite;
+}
+.animate-spin-slow {
+  animation: spin 14s linear infinite;
+}
+.animate-marquee {
+  animation: marquee 22s linear infinite;
+}
+.animate-pop-in {
+  animation: popIn 0.55s var(--ease-pop) both;
+}
+.animate-pop-in-slow {
+  animation: popIn 0.6s var(--ease-pop) both;
+}
+.animate-wiggle {
+  animation: wiggle 2.4s ease-in-out infinite;
+}
+.animate-floaty {
+  animation: floaty 5s ease-in-out infinite;
+}
+.animate-blob {
+  animation: blob 9s ease-in-out infinite;
+}
+.animate-slide-in-right {
+  animation: slideInRight 0.3s ease-out both;
+}
+.animate-slide-in-left {
+  animation: slideInLeft 0.3s ease-out both;
+}
+.animate-burst {
+  animation: burst 0.7s ease-out both;
+}
+
+/* sections fade and slide up 24px the first time they scroll into view (§6.13) */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.5s ease-out,
+    transform 0.5s ease-out;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* springy service cards (§6.7): the overshoot easing is what makes it feel alive */
+.spring-card {
+  transition:
+    transform 0.3s var(--ease-spring),
+    background-color 0.3s,
+    color 0.3s;
+}
+@media (hover: hover) {
+  .spring-card:hover {
+    transform: translateY(-10px) rotate(-2deg);
+  }
+}
+.spring-card:focus-visible {
+  transform: translateY(-10px) rotate(-2deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+  .spring-card:hover,
+  .spring-card:focus-visible {
+    transform: none;
+  }
+}

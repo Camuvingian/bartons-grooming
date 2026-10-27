@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en-GB" data-scheme="lagoon">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Barton's Grooming — bath, cut and cuddle for every breed</title>
+    <meta
+      name="description"
+      content="Independent dog grooming salon. Gentle hands, warm water, zero rush. Book a groom online."
+    />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&family=Unbounded:wght@500;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Syne:wght@500;700;800&family=Outfit:wght@400;500;600;700&display=swap"
+    />
+    <script>
+      // Paint the saved scheme, mode and lettering before React mounts, so there is no flash.
+      (function () {
+        try {
+          var root = document.documentElement;
+          var scheme = localStorage.getItem("bartons-scheme");
+          var mode = localStorage.getItem("bartons-mode") || "system";
+          var font = localStorage.getItem("bartons-font");
+          if (scheme && /^(lagoon|bubblegum|citrus|berry)$/.test(scheme)) root.dataset.scheme = scheme;
+          if (font && /^(bricolage|fredoka|unbounded|syne)$/.test(font)) root.dataset.font = font;
+          var dark =
+            mode === "dark" || (mode === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+          root.classList.toggle("dark", dark);
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
