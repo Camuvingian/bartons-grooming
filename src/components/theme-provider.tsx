@@ -1,9 +1,21 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
-import { LETTERINGS, MODES, SCHEMES, THEME_DEFAULTS, type Lettering, type Mode, type Scheme } from "@/lib/theme";
+import {
+  DOG_COATS,
+  type DogCoat,
+  LETTERINGS,
+  MODES,
+  SCHEMES,
+  THEME_DEFAULTS,
+  type Lettering,
+  type Mode,
+  type Scheme,
+} from "@/lib/theme";
 
 export type { Lettering, Mode, Scheme };
 
 type Ctx = {
+  dogCoat: DogCoat;
+  setDogCoat: (coat: DogCoat) => void;
   scheme: Scheme;
   mode: Mode;
   lettering: Lettering;
@@ -33,6 +45,8 @@ function write(key: string, value: string) {
 }
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
+  const [dogCoat, setDogCoat] = useState<DogCoat>(() => read("bartons-dog-coat", DOG_COATS, "auto"));
+  useEffect(() => write("bartons-dog-coat", dogCoat), [dogCoat]);
   const [scheme, setScheme] = useState<Scheme>(() => read("bartons-scheme", SCHEMES, THEME_DEFAULTS.scheme));
   const [mode, setMode] = useState<Mode>(() => read("bartons-mode", MODES, THEME_DEFAULTS.mode));
   const [lettering, setLettering] = useState<Lettering>(() =>
@@ -67,14 +81,15 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   }, [mode]);
 
   const reset = useCallback(() => {
+    setDogCoat("auto");
     setScheme(THEME_DEFAULTS.scheme);
     setMode(THEME_DEFAULTS.mode);
     setLettering(THEME_DEFAULTS.lettering);
   }, []);
 
   const value = useMemo(
-    () => ({ scheme, mode, lettering, resolvedMode, setScheme, setMode, setLettering, reset }),
-    [scheme, mode, lettering, resolvedMode, reset],
+    () => ({ dogCoat, setDogCoat, scheme, mode, lettering, resolvedMode, setScheme, setMode, setLettering, reset }),
+    [dogCoat, scheme, mode, lettering, resolvedMode, reset],
   );
   return <ThemeCtx.Provider value={value}>{children}</ThemeCtx.Provider>;
 }

@@ -15,16 +15,22 @@ export const NAV_LINKS = [
 ];
 
 export const HERO = {
-  chip: "Now booking — 3 slots left this week",
-  words: ["fluffy.", "fresh.", "fancy.", "adorable."],
-  sub: "Bath, cut and cuddle for every breed. Gentle hands, warm water, zero rush.",
-  photo: {
-    src: "/images/hero-dog.jpg",
-    alt: "A freshly groomed golden retriever, grinning",
-    caption: "hero photo: freshly groomed dog",
-  },
-  badge: "FRESH PUP GUARANTEE ✦ ",
-  status: ["Bath done · Bella, 2:40pm", "Fresh cut · Murphy, 3:15pm", "Nails trimmed · Pip, 3:50pm"],
+  metaLeft: "Good dogs. Great hair.",
+  metaRight: "Independent spirit / gentle hands",
+  kicker: "A little scruffy. A lot of character.",
+  title1: "Less shaggy.",
+  title2: "More swagger.",
+  intro: "For the muddy adventurers. The sofa snoozers. The very good dogs who deserve a little extra.",
+  cta: "Let's get you looking good",
+  explore: "Explore the grooms",
+  signoff: "All character. No bad hair days.",
+  signoffSmall: "Bath, cut & a whole lot of love",
+  note1: "excellent hair.",
+  note2: "questionable manners.",
+  badgeRing: "LOOK GOOD ✦ FEEL FETCH ✦ BE YOURSELF ✦ ",
+  badgeCentre: "Yeah baby!",
+  replay: "Another bubble bath?",
+  pickerLabel: "One studio. Four grooves.",
 };
 
 export const TICKER_ITEMS = [

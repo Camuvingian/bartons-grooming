@@ -44,12 +44,10 @@
   display: grid;
   place-items: center;
   border-radius: 50%;
-  border: 2px solid color-mix(in oklab, var(--brand-fg) 12%, transparent);
-  background: color-mix(in oklab, var(--brand-surface) 80%, transparent);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+  border: 3px solid var(--brand-line);
+  background: var(--brand-surface);
   color: var(--brand-fg);
-  box-shadow: 0 10px 30px var(--brand-shadow);
+  box-shadow: 4px 4px 0 var(--brand-line);
   transition:
     transform 0.3s var(--ease-spring),
     background-color 0.3s,
@@ -65,8 +63,8 @@
 }
 .bg-settings:hover .bg-settings-btn,
 .bg-settings.is-open .bg-settings-btn {
-  border-color: var(--brand-primary);
-  color: var(--brand-primary);
+  background: var(--brand-sun);
+  color: var(--brand-on-sun);
 }
 .bg-settings:hover .bg-settings-btn svg,
 .bg-settings.is-open .bg-settings-btn svg {

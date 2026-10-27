@@ -2,42 +2,53 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 @import "./styles/animations.css";
+@import "./styles/groovy.css";
 
 @custom-variant dark (&:is(.dark *));
 
-/* ── Brand colour roles (§3). Components only ever reference roles. ── */
+/* ── Brand colour roles. Four 1960s grooves; components only ever reference roles. ──
+   primary: hero block, logo, links  ·  sun: CTAs, chips, rotating accents  ·  pop: estimator, stickers
+   zing: the fourth stripe in the rainbow  ·  ink: text and heavy fills  ·  paper: page  ·  surface: cards */
 :root,
-[data-scheme="lagoon"] {
-  --brand-primary: #3d5afe;
-  --brand-sun: #2ef2d0;
-  --brand-pop: #ff6f5e;
-  --brand-ink: #0d1333;
-  --brand-paper: #f5f7ff;
-  --brand-surface: #ffffff;
+[data-scheme="shagadelic"] {
+  --brand-primary: #f0168a;
+  --brand-sun: #c8f53a;
+  --brand-pop: #ff7a1a;
+  --brand-zing: #7b2ce0;
+  --brand-on-zing: #ffffff;
+  --brand-ink: #2a0b3d;
+  --brand-paper: #fff3cf;
+  --brand-surface: #fffbec;
 }
-[data-scheme="bubblegum"] {
-  --brand-primary: #ff3d8b;
+[data-scheme="mod"] {
+  --brand-primary: #ee5a05;
   --brand-sun: #ffd23f;
-  --brand-pop: #00c2a8;
-  --brand-ink: #1b1035;
-  --brand-paper: #fff7fb;
-  --brand-surface: #ffffff;
+  --brand-pop: #19c2b8;
+  --brand-zing: #d81e5b;
+  --brand-on-zing: #ffffff;
+  --brand-ink: #3a1a0a;
+  --brand-paper: #fff4de;
+  --brand-surface: #fffaf0;
 }
-[data-scheme="citrus"] {
-  --brand-primary: #ff6b1a;
-  --brand-sun: #c6f432;
-  --brand-pop: #2eb8ff;
-  --brand-ink: #14213d;
-  --brand-paper: #fffbf3;
-  --brand-surface: #ffffff;
+[data-scheme="flower"] {
+  --brand-primary: #6f2dd9;
+  --brand-sun: #ffe14d;
+  --brand-pop: #ff5ca8;
+  --brand-zing: #39c97a;
+  --brand-on-zing: #26073f;
+  --brand-ink: #26073f;
+  --brand-paper: #fbf1ff;
+  --brand-surface: #fffaff;
 }
-[data-scheme="berry"] {
-  --brand-primary: #8b3dff;
-  --brand-sun: #ffb627;
-  --brand-pop: #3ee8a6;
-  --brand-ink: #1e0b3a;
-  --brand-paper: #fbf7ff;
-  --brand-surface: #ffffff;
+[data-scheme="lava"] {
+  --brand-primary: #0c8686;
+  --brand-sun: #ffc93c;
+  --brand-pop: #ff5a36;
+  --brand-zing: #c6f542;
+  --brand-on-zing: #0b2a2a;
+  --brand-ink: #0b2a2a;
+  --brand-paper: #f6f3e4;
+  --brand-surface: #fffdf3;
 }
 
 /* Shared derived roles (light) */
@@ -48,73 +59,110 @@
   --brand-on-primary: #ffffff;
   --brand-on-sun: var(--brand-ink);
   --brand-on-pop: var(--brand-ink);
+  /* outlines and hard offset shadows: ink by day, cream by night */
+  --brand-line: var(--brand-ink);
   --brand-shadow: rgb(0 0 0 / 0.15);
   --brand-hero-ring: transparent;
 }
 
-/* DARK, per scheme. --brand-ink stays the light-mode ink so on-sun / on-pop keep working. */
+/* DARK, per scheme: deep purples, plums and lava-lamp teals. --brand-ink stays the light ink so on-sun / on-pop keep working. */
 .dark,
-.dark[data-scheme="lagoon"] {
-  --brand-primary: #5c76ff;
-  --brand-sun: #2ef2d0;
-  --brand-pop: #ff7a6b;
-  --brand-paper: #080c24;
-  --brand-surface: #121a3f;
-  --brand-fg: #eef1ff;
-  --brand-ink: #0d1333;
+.dark[data-scheme="shagadelic"] {
+  --brand-primary: #ff4fa8;
+  --brand-sun: #d6ff4f;
+  --brand-pop: #ff8d3b;
+  --brand-zing: #a56bff;
+  --brand-on-zing: #1a0633;
+  --brand-paper: #1a0633;
+  --brand-surface: #2c1150;
+  --brand-fg: #fff0f7;
+  --brand-ink: #2a0b3d;
 }
-.dark[data-scheme="bubblegum"] {
-  --brand-primary: #ff5a9e;
-  --brand-sun: #ffd84f;
-  --brand-pop: #14d4b9;
-  --brand-paper: #120a26;
-  --brand-surface: #1f1440;
-  --brand-fg: #fff0f6;
-  --brand-ink: #1b1035;
+.dark[data-scheme="mod"] {
+  --brand-primary: #ff7a2e;
+  --brand-sun: #ffd95a;
+  --brand-pop: #2fd8ce;
+  --brand-zing: #ff4f7e;
+  --brand-on-zing: #24100a;
+  --brand-paper: #24100a;
+  --brand-surface: #3a1c12;
+  --brand-fg: #fff2e6;
+  --brand-ink: #3a1a0a;
 }
-.dark[data-scheme="citrus"] {
-  --brand-primary: #ff7f38;
-  --brand-sun: #ccf54a;
-  --brand-pop: #4cc3ff;
-  --brand-paper: #0b1326;
-  --brand-surface: #16213d;
-  --brand-fg: #f3f6ff;
-  --brand-ink: #14213d;
+.dark[data-scheme="flower"] {
+  --brand-primary: #9b6bff;
+  --brand-sun: #ffe866;
+  --brand-pop: #ff7dba;
+  --brand-zing: #5be89a;
+  --brand-on-zing: #160528;
+  --brand-paper: #160528;
+  --brand-surface: #291047;
+  --brand-fg: #f9f0ff;
+  --brand-ink: #26073f;
 }
-.dark[data-scheme="berry"] {
-  --brand-primary: #9d5cff;
-  --brand-sun: #ffbe3d;
-  --brand-pop: #4ff0b2;
-  --brand-paper: #120723;
-  --brand-surface: #22113f;
-  --brand-fg: #f6f0ff;
-  --brand-ink: #1e0b3a;
+.dark[data-scheme="lava"] {
+  --brand-primary: #2fc9c4;
+  --brand-sun: #ffd24a;
+  --brand-pop: #ff6b47;
+  --brand-zing: #d4ff57;
+  --brand-on-zing: #06211f;
+  --brand-paper: #06211f;
+  --brand-surface: #0f3835;
+  --brand-fg: #eafffa;
+  --brand-ink: #0b2a2a;
 }
 .dark {
   --brand-contrast: var(--brand-sun);
   --brand-on-contrast: var(--brand-paper);
+  --brand-on-primary: #ffffff;
+  --brand-line: var(--brand-fg);
   --brand-shadow: rgb(0 0 0 / 0.4);
   --brand-hero-ring: rgb(255 255 255 / 0.06);
 }
+.dark[data-scheme="lava"] {
+  --brand-on-primary: #06211f;
+}
 
-/* ── Lettering presets (settings menu). Default: Bricolage Grotesque + Figtree. ── */
+/* ── Lettering presets (settings menu). Each sets its own display weight and tracking, so groovy single-weight faces never get faux-bold. ── */
 :root,
+[data-font="shrikhand"] {
+  --font-display: "Shrikhand", "Bricolage Grotesque", system-ui, sans-serif;
+  --font-sans: "Outfit", system-ui, sans-serif;
+  --font-eyebrow: "Righteous", "Outfit", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-display-weight: 400;
+  --eyebrow-weight: 400;
+  --track-display: 0.005em;
+  --track-footer: 0.01em;
+  --leading-display: 1.02;
+}
+[data-font="righteous"] {
+  --font-display: "Righteous", system-ui, sans-serif;
+  --font-sans: "Poppins", system-ui, sans-serif;
+  --font-eyebrow: "Righteous", system-ui, sans-serif;
+  --font-display-weight: 400;
+  --track-display: -0.01em;
+  --track-footer: -0.02em;
+  --leading-display: 0.98;
+}
+[data-font="bagel"] {
+  --font-display: "Bagel Fat One", system-ui, sans-serif;
+  --font-sans: "Nunito", system-ui, sans-serif;
+  --font-eyebrow: "Righteous", system-ui, sans-serif;
+  --font-display-weight: 400;
+  --track-display: 0.01em;
+  --track-footer: 0.01em;
+  --leading-display: 1;
+}
 [data-font="bricolage"] {
   --font-display: "Bricolage Grotesque", system-ui, sans-serif;
   --font-sans: "Figtree", system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
-}
-[data-font="fredoka"] {
-  --font-display: "Fredoka", system-ui, sans-serif;
-  --font-sans: "Nunito", system-ui, sans-serif;
-}
-[data-font="unbounded"] {
-  --font-display: "Unbounded", system-ui, sans-serif;
-  --font-sans: "DM Sans", system-ui, sans-serif;
-}
-[data-font="syne"] {
-  --font-display: "Syne", system-ui, sans-serif;
-  --font-sans: "Outfit", system-ui, sans-serif;
+  --font-eyebrow: "JetBrains Mono", ui-monospace, monospace;
+  --font-display-weight: 800;
+  --eyebrow-weight: 500;
+  --track-display: -0.04em;
+  --track-footer: -0.06em;
+  --leading-display: 0.92;
 }
 
 /* ── shadcn mapping, so every shadcn component inherits the theme ── */
@@ -186,7 +234,11 @@
   --color-brand-on-primary: var(--brand-on-primary);
   --color-brand-on-sun: var(--brand-on-sun);
   --color-brand-on-pop: var(--brand-on-pop);
+  --color-brand-zing: var(--brand-zing);
+  --color-brand-on-zing: var(--brand-on-zing);
+  --color-brand-line: var(--brand-line);
   --font-display: var(--font-display);
+  --font-eyebrow: var(--font-eyebrow);
   --font-sans: var(--font-sans);
   --font-heading: var(--font-display);
   --font-mono: var(--font-mono);
@@ -208,6 +260,9 @@
   html {
     @apply font-sans;
     -webkit-text-size-adjust: 100%;
+    /* single-weight display faces (Shrikhand, Righteous…) must never be faux-bolded */
+    font-synthesis-weight: none;
+    overflow-x: clip;
   }
   body {
     @apply bg-background text-foreground font-sans antialiased;
@@ -234,16 +289,31 @@
 }
 
 @utility eyebrow {
-  font-family: var(--font-mono);
-  font-weight: 500;
+  font-family: var(--font-eyebrow);
+  font-weight: var(--eyebrow-weight, 400);
   font-size: 12px;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 @utility display {
   font-family: var(--font-display);
-  font-weight: 800;
-  line-height: 1;
+  font-weight: var(--font-display-weight, 800);
+  line-height: var(--leading-display, 1);
+  letter-spacing: var(--track-display, 0);
+}
+/* 1960s poster type: a stacked solid shadow behind display headings */
+@utility groovy-title {
+  text-shadow: 0.05em 0.05em 0 var(--title-shadow, var(--brand-pop));
+}
+/* big polka dots, the mod way */
+@utility polka {
+  background-image: radial-gradient(color-mix(in oklab, var(--brand-ink) 16%, transparent) 2.5px, transparent 3.2px);
+  background-size: 28px 28px;
+}
+/* thick outline plus a hard offset shadow: the sticker look used on cards, frames and panels */
+@utility sticker {
+  border: 3px solid var(--brand-line);
+  box-shadow: var(--sticker-offset, 6px) var(--sticker-offset, 6px) 0 var(--brand-line);
 }
 @utility page-x {
   padding-inline: var(--gutter);

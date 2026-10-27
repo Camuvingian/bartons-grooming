@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Monitor, Moon, Settings, Sun } from "lucide-react";
 import { useTheme } from "@/components/theme-provider";
-import { LETTERINGS, MODES, SCHEMES, THEME_DEFAULTS, type Mode } from "@/lib/theme";
+import { DOG_COATS, LETTERINGS, MODES, SCHEMES, THEME_DEFAULTS, type Mode } from "@/lib/theme";
 import { cn } from "@/lib/utils";
 
 const MODE_ICON: Record<Mode, typeof Sun> = { light: Sun, dark: Moon, system: Monitor };
@@ -19,7 +19,10 @@ export function SettingsMenu() {
   // pages without a burger (booking) keep the cog in the top corner on mobile too
   const plain = useLocation().pathname.startsWith("/book");
   const changed =
-    t.scheme !== THEME_DEFAULTS.scheme || t.mode !== THEME_DEFAULTS.mode || t.lettering !== THEME_DEFAULTS.lettering;
+    t.dogCoat !== "auto" ||
+    t.scheme !== THEME_DEFAULTS.scheme ||
+    t.mode !== THEME_DEFAULTS.mode ||
+    t.lettering !== THEME_DEFAULTS.lettering;
 
   // tap outside or press Escape to close
   useEffect(() => {
@@ -41,16 +44,39 @@ export function SettingsMenu() {
         className="bg-settings-btn relative"
         aria-expanded={open}
         aria-controls="bg-settings-panel"
-        aria-label="Site look: colours, dark mode and lettering"
+        aria-label="Site look: colour groove, setter coat, dark mode and lettering"
         onClick={() => setOpen((o) => !o)}
       >
         <Settings className="size-5" strokeWidth={2.2} aria-hidden />
       </button>
 
       <div id="bg-settings-panel" className="bg-settings-panel" role="group" aria-label="Site look">
+        <fieldset className="m-0 flex flex-col gap-2 border-0 p-0">
+          <legend className="eyebrow mb-2 text-muted-foreground">Setter coat</legend>
+          <div className="grid gap-1.5" role="group" aria-label="Setter coat">
+            {DOG_COATS.map((coat) => (
+              <button
+                key={coat.id}
+                type="button"
+                aria-pressed={t.dogCoat === coat.id}
+                onClick={() => t.setDogCoat(coat.id)}
+                className={cn(
+                  "rounded-xl px-3 py-2.5 text-left text-sm font-bold",
+                  t.dogCoat === coat.id
+                    ? "bg-brand-contrast text-brand-on-contrast"
+                    : "bg-muted hover:bg-foreground/10",
+                )}
+              >
+                {coat.name}
+              </button>
+            ))}
+          </div>
+          <p className="text-xs text-muted-foreground">Match theme: black & tan by day, chestnut after dark.</p>
+        </fieldset>
+
         <fieldset className="m-0 flex flex-col gap-2.5 border-0 p-0">
-          <legend className="eyebrow mb-2.5 text-muted-foreground">Colour scheme</legend>
-          <div role="radiogroup" aria-label="Colour scheme" className="grid gap-1.5">
+          <legend className="eyebrow mb-2.5 text-muted-foreground">Colour groove</legend>
+          <div role="radiogroup" aria-label="Colour groove" className="grid gap-1.5">
             {SCHEMES.map((s) => {
               const on = t.scheme === s.id;
               const dots = t.resolvedMode === "dark" ? s.dark : s.swatch;

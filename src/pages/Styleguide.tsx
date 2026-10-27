@@ -11,10 +11,10 @@ export default function Styleguide() {
       <Link to="/" className="text-sm font-semibold text-brand-primary">
         ← Back to the site
       </Link>
-      <h1 className="display mt-4 text-[clamp(38px,5vw,60px)] tracking-[-0.04em]">Colour schemes</h1>
+      <h1 className="display groovy-title mt-4 text-[clamp(38px,5vw,60px)]">Four grooves</h1>
       <p className="mt-3 max-w-[520px] text-[17px] opacity-75">
-        Four schemes, each with a light and a dark version. Click a card to apply it. The cog in the corner switches
-        light and dark.
+        Four 1960s colour grooves, each with its own after-dark version. Click a card to apply it. The cog in the corner
+        switches light and dark.
       </p>
       <div className="mt-10 grid grid-cols-1 gap-5 min-[640px]:grid-cols-2">
         {SCHEMES.map((s) => {
@@ -27,11 +27,11 @@ export default function Styleguide() {
               onClick={() => t.setScheme(s.id)}
               aria-pressed={applied}
               className={cn(
-                "theme-fade flex flex-col gap-4 rounded-[26px] bg-brand-surface p-5 text-left ring-1 ring-border transition-transform duration-300 ease-(--ease-spring) hover:-translate-y-1.5 focus-visible:outline-2 focus-visible:outline-brand-primary",
-                applied && "ring-2 ring-brand-primary",
+                "theme-fade sticker flex flex-col gap-4 rounded-[26px] bg-brand-surface p-5 text-left transition-transform duration-300 ease-(--ease-spring) hover:-translate-y-1.5 hover:-rotate-1 focus-visible:outline-2 focus-visible:outline-brand-primary",
+                applied && "[--brand-line:var(--brand-primary)]",
               )}
             >
-              <div className="grid h-36 grid-cols-[2fr_1fr_1fr] gap-2" aria-hidden>
+              <div className="grid h-36 grid-cols-[2fr_1fr_1fr_1fr] gap-2" aria-hidden>
                 <span
                   className="grid place-items-end rounded-2xl p-3 font-mono text-xs text-white"
                   style={{ background: sw[0] }}
@@ -40,9 +40,10 @@ export default function Styleguide() {
                 </span>
                 <span className="rounded-2xl" style={{ background: sw[1] }} />
                 <span className="rounded-2xl" style={{ background: sw[2] }} />
+                <span className="rounded-2xl" style={{ background: sw[3] }} />
               </div>
               <div>
-                <p className="display text-[26px] tracking-[-0.03em]">{s.name}</p>
+                <p className="display text-[26px]">{s.name}</p>
                 <p className="mt-1 text-sm opacity-75">{s.blurb}</p>
               </div>
               <p className={cn("eyebrow", applied ? "text-brand-primary" : "text-muted-foreground")}>

@@ -67,7 +67,7 @@ export function SiteNav() {
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className="font-display text-[40px] font-extrabold leading-none tracking-[-0.03em] hover:text-brand-primary"
+                className="font-display text-[40px] font-extrabold leading-none tracking-(--track-display) hover:text-brand-primary"
                 style={{ transitionDelay: `${i * 40}ms` }}
               >
                 {l.label}

@@ -83,7 +83,7 @@ export function BookingFlow() {
           dir === "forward" ? "animate-slide-in-right" : "animate-slide-in-left",
         )}
       >
-        <h1 className="display text-[40px] tracking-[-0.04em]">{TITLES[step - 1]}</h1>
+        <h1 className="display groovy-title text-[40px]">{TITLES[step - 1]}</h1>
         {step === 1 && <StepService value={serviceId} onChange={setServiceId} />}
         {step === 2 && <StepWhen days={days} day={day} time={time} onDay={setDay} onTime={setTime} />}
         {step === 3 && <StepConfirm serviceName={service.name} when={when} price={price} />}
@@ -98,7 +98,7 @@ export function BookingFlow() {
         <button
           type="button"
           onClick={next}
-          className="theme-fade mx-auto flex w-full max-w-[400px] items-center justify-center gap-2 rounded-full bg-brand-contrast p-5 text-[17px] font-extrabold text-brand-on-contrast shadow-[0_6px_0_var(--brand-primary)] transition-transform duration-150 active:translate-y-1 active:shadow-[0_2px_0_var(--brand-primary)]"
+          className="theme-fade mx-auto flex w-full max-w-[400px] items-center justify-center gap-2 rounded-full border-[3px] border-brand-line bg-brand-contrast p-5 text-[17px] font-extrabold text-brand-on-contrast shadow-[0_6px_0_var(--brand-primary)] transition-transform duration-150 active:translate-y-1 active:shadow-[0_2px_0_var(--brand-primary)]"
         >
           {CTAS[step - 1]}
           {step < 3 && <ArrowRight className="size-5" aria-hidden />}

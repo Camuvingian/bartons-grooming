@@ -48,7 +48,7 @@ export function BeforeAfter({
   return (
     <div
       ref={ref}
-      className="relative h-[320px] cursor-ew-resize select-none overflow-hidden rounded-[28px] touch-none min-[768px]:h-[420px]"
+      className="sticker relative h-[320px] cursor-ew-resize select-none overflow-hidden rounded-[28px] touch-none [--sticker-offset:8px] min-[768px]:h-[420px]"
       onPointerDown={(e) => {
         dragging.current = true;
         setSettling(false);
@@ -85,10 +85,10 @@ export function BeforeAfter({
         <Photo src={after} alt="" caption={`after photo: ${alt}`} tone="after" className="absolute inset-0" />
       </div>
 
-      <span className="theme-fade absolute left-4 top-4 rounded-full bg-brand-contrast px-3 py-1.5 text-xs font-extrabold uppercase tracking-wider text-brand-on-contrast">
+      <span className="theme-fade eyebrow absolute left-4 top-4 rounded-full border-2 border-brand-ink bg-brand-pop px-3 py-1.5 text-brand-on-pop">
         Before
       </span>
-      <span className="theme-fade absolute right-4 top-4 rounded-full bg-brand-sun px-3 py-1.5 text-xs font-extrabold uppercase tracking-wider text-brand-on-sun">
+      <span className="theme-fade eyebrow absolute right-4 top-4 rounded-full border-2 border-brand-ink bg-brand-sun px-3 py-1.5 text-brand-on-sun">
         After
       </span>
 
@@ -108,8 +108,8 @@ export function BeforeAfter({
         className="group absolute inset-y-0 w-0 outline-none"
         style={{ left: `${pos}%`, transition }}
       >
-        <div className="absolute inset-y-0 left-1/2 w-1 -translate-x-1/2 bg-white" />
-        <div className="theme-fade absolute left-1/2 top-1/2 grid size-14 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border-4 border-white bg-brand-primary text-brand-on-primary group-focus-visible:ring-4 group-focus-visible:ring-brand-sun">
+        <div className="absolute inset-y-0 left-1/2 w-1 -translate-x-1/2 bg-brand-sun" />
+        <div className="theme-fade absolute left-1/2 top-1/2 grid size-14 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border-[3px] border-brand-ink bg-brand-sun text-brand-ink shadow-[3px_3px_0_var(--brand-ink)] group-focus-visible:ring-4 group-focus-visible:ring-brand-primary">
           <MoveHorizontal className="size-6" aria-hidden />
         </div>
       </div>

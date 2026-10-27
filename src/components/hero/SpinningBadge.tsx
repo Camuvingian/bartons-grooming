@@ -1,27 +1,31 @@
 import { useId } from "react";
-import { HERO } from "@/data/content";
+import { Starburst } from "@/components/groovy/Starburst";
+import { cn } from "@/lib/utils";
 
-/** The "Fresh Pup Guarantee" badge: circular text spins, the 5★ stays still (§6.4). */
-export function SpinningBadge({ className = "" }: { className?: string }) {
-  const id = useId();
-  const pathId = `badge-circle-${id}`;
+/** A starburst sticker: the ring of text spins (14s), the centre stays put. */
+export function SpinningBadge({ className, ring, centre }: { className?: string; ring: string; centre: string }) {
+  const pathId = `badge-circle-${useId()}`;
   return (
     <div
-      className={`theme-fade grid size-[150px] place-items-center rounded-full bg-brand-pop ${className}`}
-      aria-label="Five star fresh pup guarantee"
+      className={cn("relative grid size-[150px] place-items-center", className)}
+      role="img"
+      aria-label={`${centre} ${ring}`}
     >
-      <svg viewBox="0 0 200 200" className="animate-spin-slow absolute inset-0 size-full" aria-hidden>
+      <Starburst className="theme-fade absolute inset-0 size-full" fill="var(--brand-pop)" stroke="var(--brand-ink)" />
+      <svg viewBox="0 0 200 200" className="animate-spin-slow absolute inset-[14px] size-[calc(100%-28px)]" aria-hidden>
         <defs>
-          <path id={pathId} d="M100,100 m-72,0 a72,72 0 1,1 144,0 a72,72 0 1,1 -144,0" />
+          <path id={pathId} d="M100,100 m-66,0 a66,66 0 1,1 132,0 a66,66 0 1,1 -132,0" />
         </defs>
-        <text fill="#fff" className="font-display" style={{ fontWeight: 700, fontSize: 17, letterSpacing: 3 }}>
-          <textPath href={`#${pathId}`}>
-            {HERO.badge}
-            {HERO.badge}
-          </textPath>
+        <text fill="var(--brand-ink)" style={{ fontFamily: "var(--font-eyebrow)", fontSize: 14, letterSpacing: 2.5 }}>
+          <textPath href={`#${pathId}`}>{ring}</textPath>
         </text>
       </svg>
-      <span className="font-display text-[30px] font-extrabold text-white">5★</span>
+      <span
+        className="display relative max-w-[96px] text-center text-[22px] leading-[0.95] text-brand-ink"
+        style={{ textShadow: "0.06em 0.06em 0 var(--brand-sun)" }}
+      >
+        {centre}
+      </span>
     </div>
   );
 }

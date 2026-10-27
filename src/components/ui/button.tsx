@@ -19,9 +19,9 @@ const buttonVariants = cva(
           "bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40",
         link: "text-primary underline-offset-4 hover:underline",
         // Barton's pill buttons (§5.1)
-        pill: "rounded-full bg-brand-contrast text-brand-on-contrast font-bold px-[22px] py-3 text-[15px] transition-transform duration-200 hover:-rotate-3 hover:scale-[1.06] active:translate-y-0",
+        pill: "rounded-full border-2 border-brand-line bg-brand-contrast text-brand-on-contrast font-bold px-[22px] py-3 text-[15px] shadow-[4px_4px_0_var(--brand-primary)] transition-transform duration-200 hover:-rotate-3 hover:scale-[1.06] active:translate-y-0",
         pillSun:
-          "rounded-full bg-brand-sun text-brand-on-sun font-extrabold px-[30px] py-[18px] text-[17px] shadow-[0_6px_0_var(--brand-ink)] transition-transform duration-200 hover:-translate-y-[3px] active:translate-y-[3px] active:shadow-[0_2px_0_var(--brand-ink)]",
+          "rounded-full border-[3px] border-brand-ink bg-brand-sun text-brand-on-sun font-extrabold px-[30px] py-[18px] text-[17px] shadow-[0_6px_0_var(--brand-ink)] transition-transform duration-200 hover:-translate-y-[3px] active:translate-y-[3px] active:shadow-[0_2px_0_var(--brand-ink)]",
         pillOutline:
           "rounded-full border-2 border-current text-brand-on-primary font-bold px-7 py-4 text-[17px] bg-transparent hover:bg-white/10",
         pillPrimary:

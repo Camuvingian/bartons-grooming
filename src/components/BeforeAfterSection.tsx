@@ -18,7 +18,7 @@ export function BeforeAfterSection() {
     >
       <div className="flex flex-col gap-5">
         <p className="eyebrow text-[13px] text-brand-primary">{BEFORE_AFTER.eyebrow}</p>
-        <h2 id="ba-title" className="display text-[clamp(38px,5vw,60px)] tracking-[-0.04em]">
+        <h2 id="ba-title" className="display groovy-title text-[clamp(38px,5vw,60px)]">
           {BEFORE_AFTER.title}
         </h2>
         <p className="max-w-[420px] text-[17px] leading-[1.55] opacity-75">{BEFORE_AFTER.sub}</p>
