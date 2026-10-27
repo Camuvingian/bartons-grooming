@@ -11,7 +11,7 @@ export function BeforeAfterSection() {
   const ref = useReveal<HTMLElement>();
   return (
     <section
-      id="gallery"
+      id="glow-up"
       ref={ref}
       className="reveal page-x grid grid-cols-1 items-center gap-10 py-[60px] min-[900px]:grid-cols-[1fr_1.25fr] min-[900px]:gap-12"
       aria-labelledby="ba-title"

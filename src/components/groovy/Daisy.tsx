@@ -8,6 +8,7 @@ export function Daisy({
   center = "var(--brand-ink)",
   petals = 8,
   title,
+  size,
 }: {
   className?: string;
   style?: CSSProperties;
@@ -15,10 +16,14 @@ export function Daisy({
   center?: string;
   petals?: number;
   title?: string;
+  /** explicit pixel size, needed when the daisy is nested inside another SVG */
+  size?: number;
 }) {
   return (
     <svg
       viewBox="-50 -50 100 100"
+      width={size}
+      height={size}
       className={className}
       style={style}
       aria-hidden={title ? undefined : true}
